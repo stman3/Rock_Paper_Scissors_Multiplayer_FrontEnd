@@ -8,6 +8,7 @@ const Lobby =()=>{
     return(
         <div>
             <div>Lobby</div>
+            <button onClick={()=>navigate('/Game')}>Game</button>
         </div>
     )
 }
