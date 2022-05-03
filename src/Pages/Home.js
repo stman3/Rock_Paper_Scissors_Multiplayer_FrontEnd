@@ -12,8 +12,10 @@ const enterRoom=(PlayerName,playerRoom,navigate,props)=>{
             playerRoom:playerRoom
         }
         props.socket.emit('join_room',newPlayer,cb=>{
-            props.Setplayers(props.players.concat(cb))
+            props.Setplayers(cb)
+           
         })
+        navigate('/Lobby')
     }
     else(
         alert('Name is empty Or The Room number is worng!')
