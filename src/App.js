@@ -11,11 +11,11 @@ const socket = io.connect('http://192.168.8.122:3001')
 const player=null
 
 const App =()=> {
-  const {players,Setplayers} = useState([])
+  const [players,Setplayers] = useState([])
   return (
    <Router>
      <Routes>
-       <Route path='/' element={<Home socket={socket} player={player}/>}/>
+       <Route path='/' element={<Home socket={socket} player={player} players={players} Setplayers={Setplayers} />}/>
        <Route path='/Lobby' element={<Lobby socket={socket} players={players} Setplayers={Setplayers} player={player}/>}/>
        <Route path='/Game' element={<Game socket={socket} players={players} Setplayers={Setplayers} player={player}/>}/>
        <Route path='*' element={<ErrorPage/>}/>

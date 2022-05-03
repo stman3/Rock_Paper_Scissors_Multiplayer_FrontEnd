@@ -3,7 +3,7 @@ import { useNavigate } from "react-router-dom";
 
 
 
-const Lobby =()=>{
+const Lobby =(props)=>{
     let navigate = useNavigate()
     return(
         <div>

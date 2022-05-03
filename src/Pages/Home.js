@@ -3,6 +3,7 @@ import { useNavigate } from "react-router-dom";
 
 
 const enterRoom=(PlayerName,playerRoom,navigate,props)=>{
+    console.log(`try to join to the room ${playerRoom}`)
     if(PlayerName&&playerRoom){
         const newPlayer ={
             PlayerName:PlayerName,
@@ -10,7 +11,9 @@ const enterRoom=(PlayerName,playerRoom,navigate,props)=>{
             playerRank:'admin',
             playerRoom:playerRoom
         }
-        props.socket.emit('player',newPlayer)
+        props.socket.emit('join_room',newPlayer,cb=>{
+            props.Setplayers(props.players.concat(cb))
+        })
     }
     else(
         alert('Name is empty Or The Room number is worng!')
@@ -18,10 +21,7 @@ const enterRoom=(PlayerName,playerRoom,navigate,props)=>{
 }
 
 
-const createRoom =(PlayerName,navigate,props)=>{
-    navigate('/lobby')
-   
-}
+
 
 const Home =(props)=>{
     let navigate = useNavigate();
@@ -46,7 +46,6 @@ const Home =(props)=>{
             <input value={PlayerName} placeholder="Enter UserName" onChange={handleNumberChange} />
             <input value={playerRoom} placeholder="Enter The Number Room" onChange={handleRoomChange}/>
             <button onClick={()=> enterRoom(PlayerName,playerRoom,navigate,props)}>Enter The Room</button>
-            <button onClick={()=> createRoom (PlayerName,navigate,props)}>Create Room</button>
         </div>
     )
 }
