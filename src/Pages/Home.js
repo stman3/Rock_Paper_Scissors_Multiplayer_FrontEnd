@@ -7,7 +7,7 @@ const enterRoom=(PlayerName,playerRoom,navigate,props)=>{
     if(PlayerName&&playerRoom){
         const newPlayer={
             PlayerName:PlayerName,
-            playerRoom:playerRoom,
+            roomNo:playerRoom,
             playerRank:"",
             playerPoint:0
         }
@@ -20,9 +20,6 @@ const enterRoom=(PlayerName,playerRoom,navigate,props)=>{
 }
 
 
-const printServer=()=>{
-    
-}
 
 
 
@@ -59,7 +56,7 @@ const Home =(props)=>{
             <h1>UserName</h1>
             <input value={PlayerName} placeholder="Enter UserName" onChange={handleNumberChange} />
             <input value={playerRoom} placeholder="Enter The Number Room" onChange={handleRoomChange}/>
-            <button onClick={()=> enterRoom(PlayerName,playerRoom,navigate,props)}>Enter The Room</button>
+            <button onClick={()=> enterRoom(PlayerName,playerRoom,navigate,props)}>Join Room</button>
         </div>
     )
 }
