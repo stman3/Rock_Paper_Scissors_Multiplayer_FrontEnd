@@ -3,7 +3,6 @@ import { useNavigate } from "react-router-dom";
 
 
 const enterRoom=(PlayerName,playerRoom,navigate,props)=>{
-    console.log(`try to join to the room ${playerRoom}`)
     if(PlayerName&&playerRoom){
         const newPlayer={
             PlayerName:PlayerName,
@@ -12,7 +11,7 @@ const enterRoom=(PlayerName,playerRoom,navigate,props)=>{
             playerPoint:0
         }
         props.socket.emit("join_room",{newPlayer})
-       // navigate('/Lobby')
+       navigate('/Lobby')
     }
     else(
         alert('Name is empty Or The Room number is worng!')
@@ -34,18 +33,15 @@ const Home =(props)=>{
     useEffect(()=>{
         props.socket.on("GetPlayerCount",(data)=>{
             SetplayerOnline(data)
-            console.log(`data= ${playerOnline}`)
       })
 
     },[])
 
     const  handleNumberChange=(event)=>{
-        console.log(`number: ${event.target.value}`)
         SetPalyerName(event.target.value)
       }
 
       const  handleRoomChange =(event)=>{
-        console.log(`Room: ${event.target.value}`)
         SetplayerRoom(event.target.value)
       }
 

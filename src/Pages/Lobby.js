@@ -1,12 +1,16 @@
-import React from "react";
+import React, {useState,useEffect} from "react"
 import { useNavigate } from "react-router-dom";
 
 
 
 const Lobby =(props)=>{
     let navigate = useNavigate()
-    props.players.map(p=>console.log(p.PlayerName))
-
+    const [playerRoomNo,SetplayerRoomNo]= useState('')
+    useEffect(()=>{
+        props.socket.on("PlayerRoomNo",(data)=>{
+            console.log(data)
+        })
+    },[])
 
     return(
         <div>
