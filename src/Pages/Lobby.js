@@ -6,12 +6,11 @@ import { useNavigate } from "react-router-dom";
 const Lobby =(props)=>{
     let navigate = useNavigate()
 
-    console.log(props.playerRoomNo)
-
     useEffect(()=>{
-        console.log('hellosss')
-
-    },[props.socket])
+        props.socket.on("PlayerRoomNo",(data)=>{
+            console.log(data)
+        })
+    },[])
 
 
     return(

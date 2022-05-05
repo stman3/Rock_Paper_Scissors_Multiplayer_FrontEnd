@@ -12,6 +12,11 @@ const enterRoom=(PlayerName,playerRoom,navigate,props)=>{
             playerPoint:0
         }
         props.socket.emit("join_room",{newPlayer})
+        props.socket.on("getplayer",(data)=>{
+            console.log(`from get player ${data}`)
+            props.Setplayer(data)
+            console.log(`the player name is ${props.player}`)
+        })
        navigate('/Lobby')
     }
     else(
@@ -34,9 +39,8 @@ const Home =(props)=>{
     useEffect(()=>{
         props.socket.on("GetPlayerCount",(data)=>{
             SetplayerOnline(data)
-      })
-
-    },[props.socket])
+        })
+    },[])
 
     const  handleNumberChange=(event)=>{
         SetPalyerName(event.target.value)
