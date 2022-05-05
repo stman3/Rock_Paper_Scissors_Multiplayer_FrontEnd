@@ -8,16 +8,18 @@ import Lobby from './Pages/Lobby'
 import ErrorPage from './Pages/ErrorPage'
 
 const socket = io.connect('http://192.168.8.122:3001')
-const player=null
 
 const App =()=> {
   const [players,Setplayers] = useState([])
+  const [player,Setplayer] = useState([])
+
+  
   return (
    <Router>
      <Routes>
-       <Route path='/' element={<Home socket={socket} player={player} players={players} Setplayers={Setplayers} />}/>
-       <Route path='/Lobby' element={<Lobby socket={socket} players={players} Setplayers={Setplayers} player={player}/>}/>
-       <Route path='/Game' element={<Game socket={socket} players={players} Setplayers={Setplayers} player={player}/>}/>
+       <Route path='/' element={<Home Setplayer={Setplayer} socket={socket} player={player} players={players} Setplayers={Setplayers} />}/>
+       <Route path='/Lobby' element={<Lobby Setplayer={Setplayer}  socket={socket} players={players} Setplayers={Setplayers} player={player}/>}/>
+       <Route path='/Game' element={<Game Setplayer={Setplayer}  socket={socket} players={players} Setplayers={Setplayers} player={player}/>}/>
        <Route path='*' element={<ErrorPage/>}/>
      </Routes>
    </Router>
