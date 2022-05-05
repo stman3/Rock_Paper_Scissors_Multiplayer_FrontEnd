@@ -12,13 +12,14 @@ const socket = io.connect('http://192.168.8.122:3001')
 const App =()=> {
   const [players,Setplayers] = useState([])
   const [player,Setplayer] = useState([])
+  const [playerRoomNo,SetplayerRoomNo]= useState('')
   
   return (
    <Router>
      <Routes>
-       <Route path='/' element={<Home Setplayer={Setplayer} socket={socket} player={player} players={players} Setplayers={Setplayers} />}/>
-       <Route path='/Lobby' element={<Lobby Setplayer={Setplayer}  socket={socket} players={players} Setplayers={Setplayers} player={player}/>}/>
-       <Route path='/Game' element={<Game Setplayer={Setplayer}  socket={socket} players={players} Setplayers={Setplayers} player={player}/>}/>
+       <Route path='/' element={<Home playerRoomNo = {playerRoomNo} SetplayerRoomNo={SetplayerRoomNo} Setplayer={Setplayer} socket={socket} player={player} players={players} Setplayers={Setplayers} />}/>
+       <Route path='/Lobby' element={<Lobby playerRoomNo = {playerRoomNo} SetplayerRoomNo={SetplayerRoomNo}  Setplayer={Setplayer}  socket={socket} players={players} Setplayers={Setplayers} player={player}/>}/>
+       <Route path='/Game' element={<Game  playerRoomNo = {playerRoomNo} SetplayerRoomNo={SetplayerRoomNo} Setplayer={Setplayer}  socket={socket} players={players} Setplayers={Setplayers} player={player}/>}/>
        <Route path='*' element={<ErrorPage/>}/>
      </Routes>
    </Router>

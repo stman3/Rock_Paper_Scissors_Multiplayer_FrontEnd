@@ -4,6 +4,7 @@ import { useNavigate } from "react-router-dom";
 
 const enterRoom=(PlayerName,playerRoom,navigate,props)=>{
     if(PlayerName&&playerRoom){
+        props.SetplayerRoomNo(playerRoom)
         const newPlayer={
             PlayerName:PlayerName,
             roomNo:playerRoom,
@@ -35,7 +36,7 @@ const Home =(props)=>{
             SetplayerOnline(data)
       })
 
-    },[])
+    },[props.socket])
 
     const  handleNumberChange=(event)=>{
         SetPalyerName(event.target.value)
