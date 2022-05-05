@@ -13,9 +13,8 @@ const enterRoom=(PlayerName,playerRoom,navigate,props)=>{
         }
         props.socket.emit("join_room",{newPlayer})
         props.socket.on("getplayer",(data)=>{
-            console.log(`from get player ${data}`)
+            console.log(`from get player ${data.PlayerName}`)
             props.Setplayer(data)
-            console.log(`the player name is ${props.player}`)
         })
        navigate('/Lobby')
     }

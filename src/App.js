@@ -11,7 +11,7 @@ const socket = io.connect('http://192.168.8.122:3001')
 
 const App =()=> {
   const [players,Setplayers] = useState([])
-  const [player,Setplayer] = useState([])
+  const [player,Setplayer] = useState({})
   const [playerRoomNo,SetplayerRoomNo]= useState('')
   
   return (
