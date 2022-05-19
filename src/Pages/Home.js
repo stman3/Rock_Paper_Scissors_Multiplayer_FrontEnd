@@ -35,11 +35,11 @@ const Home =(props)=>{
     const [playerOnline,SetplayerOnline]= useState('')
 
 
-    useEffect(()=>{
+
         props.socket.on("GetPlayerCount",(data)=>{
             SetplayerOnline(data)
         })
-    },[])
+
 
     const  handleNumberChange=(event)=>{
         SetPalyerName(event.target.value)

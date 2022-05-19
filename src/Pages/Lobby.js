@@ -1,4 +1,4 @@
-import React, {useState,useEffect} from "react"
+import React, {useState} from "react"
 import { useNavigate } from "react-router-dom";
 import Lobbybutton from "../componet/Lobbybutton";
 
@@ -7,11 +7,18 @@ import Lobbybutton from "../componet/Lobbybutton";
 const Lobby =(props)=>{
     let navigate = useNavigate()
 
-    useEffect(()=>{
+
         props.socket.on("PlayerRoom",(data)=>{
             props.Setplayers(data.Players)
+            console.log(props.player.playerRank)
+            //const playerNewState = data.Players.find(p=>p.socketID===props.player.socketID)
+           // console.log("after")
+            //props.Setplayer(playerNewState)
+            //console.log("afterstate")
+
         })
-    },[])
+ //<Lobbybutton Rank={props.player.playerRank}/>
+
 
 
     return(
@@ -25,7 +32,7 @@ const Lobby =(props)=>{
                    })}
                 </ul>
             </div>
-            <Lobbybutton Rank={props.player.playerRank}/>
+          
             
         </div>
     )
