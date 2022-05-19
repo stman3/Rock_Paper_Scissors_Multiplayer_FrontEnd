@@ -17,7 +17,7 @@ const Lobby =(props)=>{
             //console.log("afterstate")
 
         })
- //<Lobbybutton Rank={props.player.playerRank}/>
+
 
 
 
@@ -32,7 +32,7 @@ const Lobby =(props)=>{
                    })}
                 </ul>
             </div>
-          
+            <Lobbybutton Rank={props.player.playerRank}/>
             
         </div>
     )
