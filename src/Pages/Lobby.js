@@ -1,5 +1,6 @@
 import React, {useState,useEffect} from "react"
 import { useNavigate } from "react-router-dom";
+import Lobbybutton from "../componet/Lobbybutton";
 
 
 
@@ -20,12 +21,12 @@ const Lobby =(props)=>{
                 <ul>
                     <h1>list of players:</h1>
                    {props.players.map((p)=>{
-                      return <div><div>iam rady </div><li key={p.socketID}>{p.PlayerName}</li></div> 
+                      return <li key={p.socketID}>{p.playerState} {p.PlayerName}</li>
                    })}
                 </ul>
             </div>
-            {}
-            <button onClick={()=>navigate('/Game')}>Game</button>
+            <Lobbybutton Rank={props.player.playerRank}/>
+            
         </div>
     )
 }

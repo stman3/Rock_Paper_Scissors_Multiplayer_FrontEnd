@@ -9,7 +9,8 @@ const enterRoom=(PlayerName,playerRoom,navigate,props)=>{
             PlayerName:PlayerName,
             roomNo:playerRoom,
             playerRank:"",
-            playerPoint:0
+            playerPoint:0,
+            playerState:"notReady"
         }
         props.socket.emit("join_room",{newPlayer})
         props.socket.on("getplayer",(data)=>{
