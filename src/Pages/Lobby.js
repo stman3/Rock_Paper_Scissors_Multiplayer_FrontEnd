@@ -20,10 +20,11 @@ const Lobby =(props)=>{
                 <ul>
                     <h1>list of players:</h1>
                    {props.players.map((p)=>{
-                      return <li key={p.socketID}>{p.PlayerName}</li>
+                      return <div><div>iam rady </div><li key={p.socketID}>{p.PlayerName}</li></div> 
                    })}
                 </ul>
             </div>
+            {}
             <button onClick={()=>navigate('/Game')}>Game</button>
         </div>
     )
