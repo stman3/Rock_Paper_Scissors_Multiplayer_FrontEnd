@@ -17,16 +17,21 @@ const Lobby =(props)=>{
             console.log("afterstate")
         })
 
+        //<li key={p.socketID}><div id="Playerli">{p.playerState}</div> {p.PlayerName}</li>
         
 
     return(
         <div>
             <div>Lobby</div>
             <div>
-                <ul>
+                <ul id="listPlayer">
                     <h1>list of players:</h1>
                    {props.players.map((p)=>{
-                      return <li key={p.socketID}>{p.playerState} {p.PlayerName}</li>
+                      return (<li id="PlayerInfoContainer" key={p.socketID}>
+                          <div id="PlayerInfoChild1">{p.playerState}</div>
+                          <div id="PlayerInfoChild2">{p.PlayerName}</div>
+                          </li>
+                      )
                    })}
                 </ul>
             </div>
