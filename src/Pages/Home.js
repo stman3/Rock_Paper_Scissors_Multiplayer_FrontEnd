@@ -16,7 +16,19 @@ const enterRoom=(PlayerName,playerRoom,navigate,props)=>{
         props.socket.on("getplayer",(data)=>{
             props.Setplayer(data)
         })
-       navigate('/Lobby')
+
+
+        props.socket.on("PlayerRoom",(data)=>{
+            props.Setplayers(data.Players)
+           /* const playerNewState = data.Players.find(p=>p.socketID===props.player.socketID)
+            console.log("after")
+            props.Setplayer(playerNewState)
+            console.log("afterstate")*/
+        })
+        
+        setTimeout(()=>{
+            navigate('/Lobby')
+        },1000)
     }
     else(
         alert('Name is empty Or The Room number is worng!')

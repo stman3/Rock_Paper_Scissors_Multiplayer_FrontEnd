@@ -1,25 +1,23 @@
-import React, {useState} from "react"
-import { useNavigate } from "react-router-dom";
+import React, {} from "react"
+//import { useNavigate } from "react-router-dom";
 import Lobbybutton from "../componet/Lobbybutton";
 
 
 
+
 const Lobby =(props)=>{
-    let navigate = useNavigate()
+    //let navigate = useNavigate()
 
 
         props.socket.on("PlayerRoom",(data)=>{
             props.Setplayers(data.Players)
-            console.log(props.player.playerRank)
-            //const playerNewState = data.Players.find(p=>p.socketID===props.player.socketID)
-           // console.log("after")
-            //props.Setplayer(playerNewState)
-            //console.log("afterstate")
-
+            const playerNewState = data.Players.find(p=>p.socketID===props.player.socketID)
+            console.log("after")
+            props.Setplayer(playerNewState)
+            console.log("afterstate")
         })
 
-
-
+        
 
     return(
         <div>
