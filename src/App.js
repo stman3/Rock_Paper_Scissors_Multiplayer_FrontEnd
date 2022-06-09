@@ -7,7 +7,7 @@ import Game from './Pages/Game'
 import Lobby from './Pages/Lobby'
 import ErrorPage from './Pages/ErrorPage'
 
-const socket = io.connect('http://192.168.8.122:3001')
+const socket = io.connect('http://192.168.8.123:3001')
 
 const App =()=> {
   const [players,Setplayers] = useState([])

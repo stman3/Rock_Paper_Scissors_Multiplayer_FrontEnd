@@ -31,3 +31,21 @@
   
  
 }
+
+#Contener_Chat{
+  position: fixed;
+  bottom: 0;
+  right: 0;
+  border: 2px solid black;
+}
+
+#Contener_Message{
+  width: 100%;
+  height: 100px;
+  background-color: silver;
+  overflow-y: scroll;
+}
+#Message{
+  margin-top:-20px; 
+ 
+}
