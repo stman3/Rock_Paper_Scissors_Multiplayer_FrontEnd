@@ -10,7 +10,7 @@ const enterRoom=(PlayerName,playerRoom,navigate,props)=>{
             roomNo:playerRoom,
             playerRank:"",
             playerPoint:0,
-            playerState:"notReady"
+            playerState:false
         }
         props.socket.emit("join_room",{newPlayer})
         props.socket.on("getplayer",(data)=>{
@@ -20,10 +20,6 @@ const enterRoom=(PlayerName,playerRoom,navigate,props)=>{
 
         props.socket.on("PlayerRoom",(data)=>{
             props.Setplayers(data.Players)
-           /* const playerNewState = data.Players.find(p=>p.socketID===props.player.socketID)
-            console.log("after")
-            props.Setplayer(playerNewState)
-            console.log("afterstate")*/
         })
         
         setTimeout(()=>{
