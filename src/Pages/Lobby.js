@@ -1,6 +1,7 @@
 import React, {useState,useEffect} from "react"
 //import { useNavigate } from "react-router-dom";
 import Lobbybutton from "../componet/Lobbybutton";
+import ChatBox from "../componet/ChatBox";
 
 
 
@@ -71,12 +72,8 @@ const Lobby =(props)=>{
                 </ul>
             </div>
             <Lobbybutton Rank={props.player.playerRank} SendState={SendState} buttonState={State}/>
-            <div id="Contener_Chat">
-                <div id="Contener_Message">{messages.map((mes)=>{
-                    return <p id="Message">{mes.PlayerName}: {mes.Message}</p>
-                })}</div>
-                <input placeholder="Message..." onChange={handleMessageChange}/><button onClick={sendMessage}>Send</button>
-            </div>
+            <ChatBox handleMessageChange={handleMessageChange} sendMessage={sendMessage} messages={messages}/>
+
         </div>
     )
 }
