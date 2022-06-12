@@ -14,17 +14,19 @@ const enterRoom=(PlayerName,playerRoom,navigate,props)=>{
         }
         props.socket.emit("join_room",{newPlayer})
         props.socket.on("getplayer",(data)=>{
-            props.Setplayer(data)
+            if(data===false){
+                alert('The Room is Full')
+            }else{
+                props.Setplayer(data)
+                props.socket.on("PlayerRoom",(d)=>{
+                    props.Setplayers(d.Players)
+                })
+                
+                setTimeout(()=>{
+                    navigate('/Lobby')
+                },1000)
+            }
         })
-
-
-        props.socket.on("PlayerRoom",(data)=>{
-            props.Setplayers(data.Players)
-        })
-        
-        setTimeout(()=>{
-            navigate('/Lobby')
-        },1000)
     }
     else(
         alert('Name is empty Or The Room number is worng!')
