@@ -2,9 +2,10 @@ import React from "react";
 
 
 const Game =()=>{
+   
     return(
         <body className="game">
-            <div className="board">
+            <div className="board x">
                <div className="cell x"></div>
                <div className="cell circle"></div>
                <div className="cell"></div>
