@@ -55,6 +55,18 @@ const Lobby =(props)=>{
         const handleMessageChange = (event)=>{
             setMessage(event.target.value)
           }
+         const handleButtonStart=()=>{
+            var AllReady = true
+            props.players.forEach((p)=>{
+              if(p.playerState===false){
+                AllReady = false
+            }
+            })
+            if(AllReady){
+                console.log(AllReady)
+            }
+
+          }
 
     return(
         <div>
@@ -71,7 +83,7 @@ const Lobby =(props)=>{
                    })}
                 </ul>
             </div>
-            <Lobbybutton Rank={props.player.playerRank} SendState={SendState} buttonState={State}/>
+            <Lobbybutton Rank={props.player.playerRank} SendState={SendState} buttonState={State} buttonStart={handleButtonStart}/>
             <ChatBox handleMessageChange={handleMessageChange} sendMessage={sendMessage} messages={messages}/>
 
         </div>
