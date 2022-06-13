@@ -1,5 +1,5 @@
 import React, {useState,useEffect} from "react"
-//import { useNavigate } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 import Lobbybutton from "../componet/Lobbybutton";
 import ChatBox from "../componet/ChatBox";
 
@@ -7,7 +7,7 @@ import ChatBox from "../componet/ChatBox";
 
 
 const Lobby =(props)=>{
-    //let navigate = useNavigate()
+    let navigate = useNavigate()
     const [messages,setmessages] = useState([])
     const [newMessage,setMessage] = useState('')
     const [State,setState]=useState('NotReady')
@@ -47,6 +47,11 @@ const Lobby =(props)=>{
             props.socket.on('recive_State',(data)=>{
                 props.Setplayers(data.Players)
             })
+            props.socket.on('receive_start_Room',(data)=>{
+                setTimeout(()=>{
+                    navigate('/Game')
+                },1000)
+            })
           },[props.socket]) 
 
 
@@ -62,8 +67,10 @@ const Lobby =(props)=>{
                 AllReady = false
             }
             })
-            if(AllReady){
-                console.log(AllReady)
+            if(AllReady&&props.players.length>1){
+                props.socket.emit('send_StartRoom',{
+                    PlayerRoomNo:props.playerRoomNo,
+                })
             }
 
           }
