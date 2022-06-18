@@ -1,76 +1,79 @@
 import React, { useState, useEffect } from "react";
 
-const X_CLASS = 'x'
-const CIRCLE_CLASS = 'circle'
-const WINNING_COMBINATIONS = [
-    [0, 1, 2],
-    [3, 4, 5],
-    [6, 7, 8],
-    [0, 3, 6],
-    [1, 4, 7],
-    [2, 5, 8],
-    [0, 4, 8],
-    [2, 4, 6]
-]
-let IndexCellEnd=[]
-let winningMessageElement
-let restartButton
-let GameStart = false
-let cellElements
-let circleTurn
+const CH=[]
+let Pch
 const Game = (props) => {
 
     useEffect(() => {
-        if (!GameStart) {
-            StartUp()
-        }
-    }, [props.socket])
-
-
-
-    const StartUp = () => {
-        winningMessageElement = document.getElementById('winningMessage')
-        restartButton = document.getElementById('restartButton')
-        circleTurn = false
-        cellElements = document.querySelectorAll('[data-cell]')
-        cellElements.forEach(cell => {
-            cell.classList.remove(X_CLASS)
-            cell.classList.remove(CIRCLE_CLASS)
-            cell.removeEventListener('click', handleClick)
-            cell.addEventListener('click', handleClick, { once: true })
+        props.socket.on('receive_Player_Ch',(data)=>{
+            CH.push(data)
+            if(CH.length>1){
+                if((CH[0]==="Rock"&&CH[1]==="Rock")||(CH[0]==="Scissors"&&CH[1]==="Scissors")||(CH[0]==="Paper"&&CH[1]==="Paper")){
+                    console.log('Drwa')
+                    const btn = document.createElement("button")
+                    btn.innerHTML = "Click Me";
+                    btn.addEventListener('click',restart)
+                    const ds = document.getElementById("s")
+                    ds.appendChild(btn)
+                    CH.pop()
+                    CH.pop()
+                    
+                }
+            }
         })
-        GameStart = true
+    }, [props.socket])
+    const restart=()=>{
+        const hpBtns = document.querySelectorAll(".endbtn button");
+        hpBtns.forEach(button=>{
+            button.disabled=false
+        })
+        const ds = document.getElementById("s")
+        ds.removeChild(ds.firstChild)
     }
-    const handleClick = (event) => {
-        const cell = event.target
-        const currentClass = circleTurn ? CIRCLE_CLASS : X_CLASS
-        placeMark(cell, currentClass)
-        swapTurns()
+    const Scissors =()=>{
+        const hpBtns = document.querySelectorAll(".endbtn button");
+        hpBtns.forEach(button=>{
+            button.disabled=true
+        })
+        props.socket.emit('send_Player_Ch',{
+            PlayerRoomNo:props.playerRoomNo,
+            PlayerCh: "Scissors"
+        })
+        Pch="Scissors"
+    }
+    const Rock=()=>{
+        const hpBtns = document.querySelectorAll(".endbtn button");
+        hpBtns.forEach(button=>{
+            button.disabled=true
+        })
+        props.socket.emit('send_Player_Ch',{
+            PlayerRoomNo:props.playerRoomNo,
+            PlayerCh: "Rock"
+        })
+        Pch="Rock"
+    }
+    const Paper=()=>{
+        const hpBtns = document.querySelectorAll(".endbtn button");
+        hpBtns.forEach(button=>{
+            button.disabled=true
+        })
+        props.socket.emit('send_Player_Ch',{
+            PlayerRoomNo:props.playerRoomNo,
+            PlayerCh: "Paper"
+        })
+        Pch="Paper"
     }
 
-    const placeMark = (cell, currentClass) => {
-        cell.classList.add(currentClass)
-    }
-    const swapTurns = () => {
-        circleTurn = !circleTurn
-    }
 
     return (
         <div className="game">
-            <div className="board">
-                <div className="cell" data-cell></div>
-                <div className="cell" data-cell></div>
-                <div className="cell" data-cell></div>
-                <div className="cell" data-cell></div>
-                <div className="cell" data-cell></div>
-                <div className="cell" data-cell></div>
-                <div className="cell" data-cell></div>
-                <div className="cell" data-cell></div>
-                <div className="cell" data-cell></div>
+            <div className="endbtn">
+            <button onClick={Rock}>Rock</button>
+            <button onClick={Paper}>Paper</button>
+            <button onClick={Scissors}>Scissors</button>
             </div>
-            <div className="winning-message">
-                <div></div>
-                <button className="restartButton">Restart</button>
+            <div  id="s">
+
             </div>
         </div>
 
